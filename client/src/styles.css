@@ -1,0 +1,68 @@
+:root { --im-bg: #0d1220; --im-surface: #151c30; --im-border: #263049; --im-accent: #f5b301; --im-accent-2: #e5484d; }
+body { background: var(--im-bg); color: #e8ebf4; min-height: 100vh; }
+.text-accent { color: var(--im-accent) !important; }
+.btn-accent { background: var(--im-accent); border-color: var(--im-accent); color: #1a1500; font-weight: 600; }
+.btn-accent:hover, .btn-accent:focus-visible { background: #ffc933; border-color: #ffc933; color: #1a1500; }
+.btn-accent:disabled { background: #6b5a1c; border-color: #6b5a1c; color: #cfc7a6; }
+a { color: #8ab4ff; }
+.im-nav { background: #0a0f1c; border-bottom: 1px solid var(--im-border); }
+.im-nav .nav-link.active { color: var(--im-accent); }
+.im-card { background: var(--im-surface); border: 1px solid var(--im-border); }
+.skip-link { position: absolute; left: 8px; top: 8px; z-index: 1000; background: var(--im-accent); color: #000; padding: 6px 10px; border-radius: 6px; }
+.hero { background: radial-gradient(circle at 15% 20%, #25305a, transparent 55%), linear-gradient(135deg, #151c30, #0d1220); border: 1px solid var(--im-border); }
+.poster { width: 100%; aspect-ratio: 2 / 3; object-fit: cover; border-radius: 10px; display: block; background: var(--im-surface); }
+.poster-fallback { display: flex; align-items: flex-end; padding: 12px; font-weight: 700; font-size: 1.05rem; color: #fff; text-shadow: 0 2px 6px #000a; }
+.detail-poster { max-width: 280px; }
+.poster-thumb { width: 64px; flex: 0 0 64px; border-radius: 8px; }
+.poster-thumb.poster-fallback { padding: 0; }
+.poster-thumb.poster-fallback span { display: none; } /* the title is already printed next to the thumbnail */
+.movie-card { display: block; background: var(--im-surface); border: 1px solid var(--im-border); border-radius: 12px; overflow: hidden; transition: transform .15s, border-color .15s; }
+.movie-card:hover, .movie-card:focus-visible { transform: translateY(-3px); border-color: var(--im-accent); }
+.cert-badge { position: absolute; top: 8px; right: 8px; background: #000b; border: 1px solid #fff4; }
+.soon-badge { position: absolute; top: 8px; left: 8px; }
+.show-btn { min-width: 110px; text-align: left; }
+.auth-box { max-width: 420px; background: var(--im-surface); border: 1px solid var(--im-border); border-radius: 12px; padding: 24px; }
+/* seats */
+.seat-scroll { overflow-x: auto; padding-bottom: 8px; }
+.screen-bar { margin: 0 auto 18px; width: 70%; min-width: 240px; text-align: center; font-size: .7rem; letter-spacing: .3em; color: #9aa4c0; border-top: 4px solid var(--im-accent); border-radius: 50% 50% 0 0 / 14px 14px 0 0; padding-top: 4px; }
+.seat-grid { display: inline-block; min-width: 100%; text-align: center; }
+.seat-row { display: flex; justify-content: center; align-items: center; gap: 6px; margin-bottom: 6px; white-space: nowrap; }
+.row-label { width: 20px; color: #9aa4c0; font-size: .8rem; }
+.aisle-gap { margin-left: 18px; }
+.seat { width: 32px; height: 32px; border-radius: 7px 7px 4px 4px; border: 1px solid transparent; font-size: .7rem; font-weight: 600; padding: 0; color: #e8ebf4; cursor: pointer; }
+.seat:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
+.seat:disabled { cursor: not-allowed; }
+.seat-available { background: #1f3a2d; border-color: #2f7a55; }
+.seat-premium { background: #2d2748; border-color: #8a6df0; }
+.seat-selected { background: var(--im-accent); color: #1a1500; border-color: #fff; }
+.seat-held { background: #5a4a14; border-color: #8a7020; color: #bba; opacity: .85; }
+.seat-yours { background: #14425a; border-color: #3aa6d8; }
+.seat-booked { background: #3a2226; border-color: #5a2f36; color: #7a6a6e; text-decoration: line-through; }
+.seat-demo { display: inline-block; width: 18px; height: 18px; vertical-align: middle; cursor: default; }
+.seat-legend li { margin-right: 14px; }
+@media (max-width: 575px) { .seat { width: 26px; height: 28px; font-size: .62rem; } .seat-row { gap: 4px; } .aisle-gap { margin-left: 10px; } }
+.summary-card { top: 1rem; }
+
+/* --- accessibility --- */
+.text-secondary { color: #aab3c8 !important; }            /* Bootstrap's dark-theme secondary is ~3.9:1 on this background; this is >= 7:1 */
+.form-text { color: #aab3c8; }
+main:focus { outline: none; }
+a:focus-visible, button:focus-visible, .btn:focus-visible, .form-control:focus-visible, .form-select:focus-visible, .nav-link:focus-visible { outline: 3px solid #fff; outline-offset: 2px; box-shadow: 0 0 0 5px #000; }
+.seat { position: relative; }
+/* seat states must not rely on colour alone */
+.seat-premium { border-top-width: 4px; }
+.seat-selected { font-weight: 800; box-shadow: inset 0 0 0 2px #1a1500; }
+.seat-selected::after { content: "✓"; position: absolute; top: -7px; right: -5px; width: 13px; height: 13px; line-height: 13px; border-radius: 50%; background: #fff; color: #000; font-size: .6rem; }
+.seat-held { background-image: repeating-linear-gradient(45deg, transparent 0 4px, rgba(255,255,255,.22) 4px 6px); }
+.seat-yours { border-style: dashed; border-width: 2px; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+  .movie-card:hover, .movie-card:focus-visible { transform: none; }
+}
+/* outline buttons: Bootstrap's defaults fail 4.5:1 on the dark background */
+.btn-outline-secondary { --bs-btn-color: #c3cadb; --bs-btn-border-color: #7f8aa6; --bs-btn-hover-bg: #2a3555; --bs-btn-hover-color: #fff; --bs-btn-hover-border-color: #aab3c8; --bs-btn-active-bg: #2a3555; --bs-btn-active-color: #fff; --bs-btn-active-border-color: #aab3c8; }
+.btn-outline-danger { --bs-btn-color: #ff9a9e; --bs-btn-border-color: #e5484d; --bs-btn-hover-bg: #b3262b; --bs-btn-hover-color: #fff; --bs-btn-hover-border-color: #b3262b; --bs-btn-active-bg: #b3262b; --bs-btn-active-color: #fff; --bs-btn-active-border-color: #b3262b; }
+/* absolutely-positioned .visually-hidden cells inside a scrolling table must be clipped by it, not widen the page */
+.table-responsive { position: relative; }
+.nav-pills .nav-link.active { background: var(--im-accent); color: #1a1500; font-weight: 600; }
+.nav-pills .nav-link { color: #c3cadb; }

@@ -1,0 +1,20 @@
+# Dependencies and build artifacts
+node_modules/
+dist/
+coverage/
+.cache/
+
+# Runtime secrets and local configuration (keep *.env.example tracked)
+.env
+.env.*
+!.env.example
+server/.env
+client/.env
+
+# Logs and test artifacts
+*.log
+test-results/
+playwright-report/
+.DS_Store
+*.pem
+*.key
